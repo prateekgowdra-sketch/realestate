@@ -58,6 +58,7 @@ This version does not use machine learning yet. It uses a clear weighted formula
 
 ```text
 data/
+  bay_area_starter_metrics.csv
   sample_zip_metrics.csv
 
 src/
@@ -76,6 +77,12 @@ Run the scoring engine:
 
 ```bash
 python src/scoring.py
+```
+
+Run it with the Bay Area starter dataset:
+
+```bash
+python src/scoring.py data/bay_area_starter_metrics.csv
 ```
 
 Example output:
@@ -106,6 +113,19 @@ Opportunity Score =
 
 Later versions can replace or support parts of this formula with machine learning predictions, such as predicted next-year home price growth.
 
+## Bay Area Focus
+
+The project now includes a Bay Area starter dataset at `data/bay_area_starter_metrics.csv`. This file is meant to test the scoring workflow on Bay Area ZIP codes before replacing the starter values with sourced data.
+
+The next data milestone is to replace the starter values with real public or licensed data for:
+
+- ZIP-level home price trends
+- Rent estimates
+- Income and population growth
+- Employer and job growth signals
+- School improvement
+- Vacancy, safety, and climate risk
+
 ## Status
 
-Early-stage project. Version 1 scoring engine is in progress.
+Early-stage project. Version 1 scoring engine is working with sample and Bay Area starter data.

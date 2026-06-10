@@ -1,4 +1,5 @@
 from pathlib import Path
+import argparse
 
 import pandas as pd
 
@@ -115,8 +116,22 @@ def build_rankings(data_path=DATA_PATH):
     return rankings
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Rank ZIP codes by Neighborhood Opportunity Score."
+    )
+    parser.add_argument(
+        "data_path",
+        nargs="?",
+        default=DATA_PATH,
+        help="Path to a CSV file with ZIP code metrics.",
+    )
+    return parser.parse_args()
+
+
 def main():
-    rankings = build_rankings()
+    args = parse_args()
+    rankings = build_rankings(args.data_path)
 
     display_columns = [
         "rank",
@@ -127,7 +142,7 @@ def main():
         "best_for",
     ]
 
-    print("\nNeighborhood Opportunity Rankings\n")
+    print(f"\nNeighborhood Opportunity Rankings: {args.data_path}\n")
     print(rankings[display_columns].to_string(index=False))
 
 
