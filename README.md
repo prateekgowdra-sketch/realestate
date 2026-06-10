@@ -20,6 +20,21 @@ This project aims to analyze real estate markets using factors such as:
 
 The goal is to build a model that can score different neighborhoods or cities based on expected growth and investment attractiveness.
 
+## Current Version
+
+The first version of this project is a transparent scoring engine. It reads ZIP code data from a CSV file and ranks each area using a 0-100 Neighborhood Opportunity Score.
+
+The current score combines:
+
+- Housing momentum
+- Rental ROI potential
+- Job and income growth
+- Population growth
+- School improvement
+- Vacancy, crime, and climate risk
+
+This version does not use machine learning yet. It uses a clear weighted formula first, which makes the scoring logic easier to explain and test before adding predictive models later.
+
 ## Planned Features
 
 - Collect public real estate and economic data
@@ -39,6 +54,58 @@ The goal is to build a model that can score different neighborhoods or cities ba
 - Jupyter Notebook
 - Git / GitHub
 
+## Project Structure
+
+```text
+data/
+  sample_zip_metrics.csv
+
+src/
+  scoring.py
+```
+
+## How To Run
+
+Install the required Python package:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the scoring engine:
+
+```bash
+python src/scoring.py
+```
+
+Example output:
+
+```text
+Neighborhood Opportunity Rankings
+
+ rank  zip_code        city state  opportunity_score               best_for
+    1     27603     Raleigh    NC               80.1 Long-term appreciation
+    2     95051 Santa Clara    CA               72.2 Long-term appreciation
+```
+
+## Scoring Method
+
+Each raw metric is normalized into a 0-100 score so different types of data can be compared fairly. Positive metrics, such as home price growth or job growth, score higher when the value is higher. Risk metrics, such as crime risk or climate risk, score higher when the risk is lower.
+
+The current weighted formula is:
+
+```text
+Opportunity Score =
+25% housing momentum
+20% rental ROI
+20% economic growth
+10% demographic momentum
+10% school improvement
+15% risk score
+```
+
+Later versions can replace or support parts of this formula with machine learning predictions, such as predicted next-year home price growth.
+
 ## Status
 
-Early-stage project. Initial setup and planning are in progress.
+Early-stage project. Version 1 scoring engine is in progress.

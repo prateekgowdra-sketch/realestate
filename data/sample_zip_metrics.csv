@@ -1,0 +1,9 @@
+zip_code,city,state,home_price_growth,rent_to_price_ratio,job_growth,income_growth,population_growth,school_score_change,vacancy_rate,crime_risk,climate_risk
+95051,Santa Clara,CA,8.4,0.42,6.8,5.1,2.4,0.7,3.2,28,42
+78704,Austin,TX,6.9,0.58,5.7,4.3,3.1,0.3,4.6,35,48
+28203,Charlotte,NC,7.6,0.64,4.9,4.8,2.9,0.5,5.1,41,36
+30318,Atlanta,GA,6.1,0.69,4.4,3.9,2.1,0.6,6.4,52,39
+85004,Phoenix,AZ,5.7,0.66,3.8,3.5,2.7,0.2,5.8,46,61
+98103,Seattle,WA,7.2,0.47,5.9,4.9,1.8,0.4,3.9,31,33
+27603,Raleigh,NC,8.1,0.61,5.2,4.6,3.4,0.8,4.8,37,34
+60622,Chicago,IL,4.8,0.72,2.9,2.7,1.1,0.1,7.2,58,29
