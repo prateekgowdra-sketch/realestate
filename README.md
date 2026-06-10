@@ -91,6 +91,12 @@ Run it with the Bay Area starter dataset:
 python src/scoring.py data/bay_area_starter_metrics.csv
 ```
 
+Run the automated tests:
+
+```bash
+python -m pytest -p no:debugging
+```
+
 Example output:
 
 ```text

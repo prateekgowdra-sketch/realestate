@@ -22,6 +22,14 @@ LOWER_IS_BETTER = [
     "climate_risk",
 ]
 
+REQUIRED_COLUMNS = [
+    "zip_code",
+    "city",
+    "state",
+    *HIGHER_IS_BETTER,
+    *LOWER_IS_BETTER,
+]
+
 
 WEIGHTS = {
     "housing_momentum_score": 0.25,
@@ -91,6 +99,14 @@ def add_opportunity_score(df):
     return scored_df
 
 
+def validate_columns(df):
+    missing_columns = [column for column in REQUIRED_COLUMNS if column not in df.columns]
+
+    if missing_columns:
+        missing_text = ", ".join(missing_columns)
+        raise ValueError(f"Missing required columns: {missing_text}")
+
+
 def get_best_for(row):
     strengths = {
         "Long-term appreciation": row["housing_momentum_score"],
@@ -105,6 +121,7 @@ def get_best_for(row):
 
 def build_rankings(data_path=DATA_PATH):
     df = pd.read_csv(data_path)
+    validate_columns(df)
     df = add_normalized_columns(df)
     df = add_category_scores(df)
     df = add_opportunity_score(df)
