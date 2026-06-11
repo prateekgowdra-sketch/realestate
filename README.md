@@ -66,6 +66,7 @@ data/processed/
 
 scripts/
   fetch_census_bay_area.py
+  merge_bay_area_metrics.py
 
 src/
   scoring.py
@@ -162,6 +163,24 @@ data/processed/bay_area_census_metrics.csv
 ```
 
 Note: Census ZIP Code Tabulation Areas are ZIP-like statistical areas, not exact USPS ZIP codes.
+
+After generating the Census file, merge the Census growth values into a scoring-ready Bay Area dataset:
+
+```bash
+python scripts/merge_bay_area_metrics.py
+```
+
+Output:
+
+```text
+data/processed/bay_area_scoring_metrics.csv
+```
+
+Then run the scoring engine on the merged dataset:
+
+```bash
+python src/scoring.py data/processed/bay_area_scoring_metrics.csv
+```
 
 ## Status
 

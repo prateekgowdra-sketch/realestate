@@ -4,6 +4,7 @@ import pandas as pd
 import pytest
 
 from src.scoring import build_rankings, normalize_column, validate_columns
+from scripts.merge_bay_area_metrics import merge_metrics
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -59,3 +60,14 @@ def test_missing_required_columns_raise_clear_error():
 
     with pytest.raises(ValueError, match="Missing required columns"):
         validate_columns(incomplete_df)
+
+
+def test_merge_uses_real_census_growth_values(tmp_path):
+    output_path = tmp_path / "bay_area_scoring_metrics.csv"
+
+    merged_df = merge_metrics(output_path=output_path)
+    row = merged_df.loc[merged_df["zip_code"] == "95051"].iloc[0]
+
+    assert output_path.exists()
+    assert row["income_growth"] == 47.89
+    assert row["population_growth"] == 5.54
